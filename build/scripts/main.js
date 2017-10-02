@@ -22,21 +22,31 @@ function LoadTime()
 {
     var timeCurrent = new Date();
     // Hour
-    var timeHoursRaw = timeCurrent.getHours();
-    var timeHoursDisplay = 0;
+    var timeHours = timeCurrent.getHours();
     var timeHourPeriod = "AM";
-    // Determine if AM or PM
-    if (timeHoursRaw > 12)
+
+    if (timeHours >= 12)
     {
-        timeHoursDisplay = timeHoursRaw - 12;
+        // Show PM if it's after 12 noon
         timeHourPeriod = "PM";
+    }
+    
+    if (timeHours == 0)
+    {
+        // If it's midnight, show hour as 12
+        timeHours = 12;
+    }
+    else if (timeHours > 12)
+    {
+        // For hours 13 or greater, subtract 12
+        timeHours = timeHours - 12;
     }
 
     // Minute and seconds
     var timeMinutes = timeCurrent.getMinutes();
     
     // Display String
-    var timeString = timeHoursDisplay + ":" + IntToTwoCharacterString(timeMinutes) + " " + timeHourPeriod;
+    var timeString = timeHours + ":" + IntToTwoCharacterString(timeMinutes) + " " + timeHourPeriod;
     $(".greeting-time").text(timeString);
     
     return;
