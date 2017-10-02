@@ -7,7 +7,6 @@ Load the date and populate the DOM.
 */
 function LoadDate()
 {
-    // Date
     var dateCurrentDate = new Date();
     var dateMonth = getMonthString(dateCurrentDate.getMonth());
     var dateDay = dateCurrentDate.getDate();
@@ -25,7 +24,7 @@ function LoadTime()
     var timeHours = timeCurrent.getHours();
     var timeMinutes = timeCurrent.getMinutes();
     var timeSeconds = timeCurrent.getSeconds();
-    var timeString = timeHours + ":" + TwoDigitString(timeMinutes) + ":" + TwoDigitString(timeSeconds);
+    var timeString = timeHours + ":" + IntToTwoCharacterString(timeMinutes) + ":" + IntToTwoCharacterString(timeSeconds);
     $(".greeting-time").text(timeString);
     
     return;
@@ -43,11 +42,12 @@ function UpdateDateTime()
 }
 
 /*
-Show two digits for minutes and time. 
+Converts a integer to a two character string. 
+Used for minute and second.
 
 Source: 
 */
-function TwoDigitString(_input)
+function IntToTwoCharacterString(_input)
 {
     return ('0' + _input).slice(-2);
 }
