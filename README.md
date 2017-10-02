@@ -10,3 +10,6 @@ This extension was developed by Brian Lam and Brian Yan, two software engineers 
 [Brian Lam](http://www.brianlam.me)
 
 [Brian Yan](http://www.brianyan.com)
+
+## Build Instructions
+Just in case I forget: I used [Koala](http://koala-app.com) to build and minify the JS and CSS assets. The raw JS and SASS goes in the build directory, and the resulting compiled and minified files go inside the assets directory. 
