@@ -1,3 +1,4 @@
+// Saves new goals
 function save() {
 	chrome.storage.sync.get('accomplishGoalsList', function(response){
 		var existingGoals = response.accomplishGoalsList;
@@ -14,6 +15,9 @@ function save() {
 	});
 }
 
+
+// Initialize method that checks if previous goals have been defined and
+// loads them if they have been
 function initialize() {
 	chrome.storage.sync.get('accomplishGoalsList', function(response){
 		if(typeof response.accomplishGoalsList !== 'undefined') {
