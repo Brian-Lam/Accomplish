@@ -25,21 +25,16 @@ function LoadTime()
     var timeHours = timeCurrent.getHours();
     var timeHourPeriod = "AM";
 
-    if (timeHours >= 12)
-    {
+    if (timeHours >= 12) {
         // Show PM if it's after 12 noon
         timeHourPeriod = "PM";
     }
     
-    if (timeHours == 0)
-    {
+    timeHours = timeHours % 12;
+        
+    if (timeHours == 0) {
         // If it's midnight, show hour as 12
         timeHours = 12;
-    }
-    else if (timeHours > 12)
-    {
-        // For hours 13 or greater, subtract 12
-        timeHours = timeHours - 12;
     }
 
     // Minute and seconds
