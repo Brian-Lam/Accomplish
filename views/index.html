@@ -4,6 +4,7 @@
         <title>Accomplish</title>
         <script src="/assets/scripts/jquery-3.2.1.min.js"></script>
         <script src="/assets/scripts/main.js"></script>
+        <script src="/assets/scripts/storage.js"></script>
     </head>
     <body>
         <div class="greeting-wrapper">
@@ -13,12 +14,12 @@
             </div>
         </div>
         <div class="new-goal-wrapper">
-            <form>
+            <form id="main-form">
                 <label>Title</label> <input type="text" name="newgoal-title" /> <br>
                 <label>Begin</label> <input type="text" name="newgoal-begin" /> <br>
                 <label>End</label> <input type="text" name="newgoal-end" /> <br>
                 <label>Description</label> <textarea type="text" name="newgoal-description"> </textarea> <br>
-                <input type="submit">
+                <input type="submit" id="submit">
             </form>
         </div>
     </body>

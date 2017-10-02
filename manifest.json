@@ -7,5 +7,6 @@
     "chrome_url_overrides":
     {
         "newtab": "views/index.html"
-    }
+    },
+    "permissions": ["storage"]
 }
