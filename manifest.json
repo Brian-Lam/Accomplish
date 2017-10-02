@@ -6,6 +6,6 @@
     "description": "Use your New Tab page to stay on top of your goals and deadlines.",
     "chrome_url_overrides":
     {
-        "newtab": "index.html"
+        "newtab": "views/index.html"
     }
 }
