@@ -3,7 +3,6 @@
     "name": "Accomplish",
     "version": "0.0.0.1",
     "version_name": "0.0.0.1: In Development",
-    "default_locale": "en",
     "description": "Use your New Tab page to stay on top of your goals and deadlines.",
     "chrome_url_overrides":
     {
