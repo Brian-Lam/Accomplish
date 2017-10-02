@@ -36,8 +36,10 @@ Run LoadDate and LoadTime on an interval
 */
 function UpdateDateTime()
 {
-    var intervalDate = setInterval(LoadDate, 1000);
-    var intervalTime = setInterval(LoadTime, 1000);
+    LoadDate();
+    var intervalDate = setInterval(LoadDate, 100);
+    LoadTime();
+    var intervalTime = setInterval(LoadTime, 100);
 }
 
 /*
