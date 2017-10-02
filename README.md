@@ -6,7 +6,9 @@ _Accomplish_ is an extension for people who are driven by deadlines and goals. I
 
 ## Authors
 This extension was developed by Brian Lam and Brian Yan, two software engineers at Microsoft. 
+
 [Brian Lam](http://www.brianlam.me)
+
 [Brian Yan](http://www.brianyan.com)
 
 ## Build Instructions
