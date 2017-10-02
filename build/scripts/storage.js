@@ -2,6 +2,10 @@ $(document).on("DOMContentLoaded", function () {
 	Initialize();
 });
 
+
+/*
+Uses chrome storage sync to save new goal
+*/
 function SaveNewGoal() {
 	chrome.storage.sync.get('accomplishGoalsList', function(response){
 		var existingGoals = response.accomplishGoalsList;
