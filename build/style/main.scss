@@ -1,3 +1,5 @@
+@import "fonts";
+
 html, body {
     margin: 0;
     height: 100%;
@@ -9,10 +11,19 @@ html {
 }
 
 .greeting-wrapper {
-    color: white;
+    color: rgba(255, 255, 255, 0.84);
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    top: 35%;
 }
 
 .greeting-time-wrapper {
-    font-size: 3em;
+    font-size: 5em;
+    font-family: OpenSansCondensedLight;
     text-align: center;
+}
+
+.greeting-time {
+    font-size: .8em;
 }

@@ -21,10 +21,22 @@ Load the time and populate the DOM.
 function LoadTime()
 {
     var timeCurrent = new Date();
-    var timeHours = timeCurrent.getHours();
+    // Hour
+    var timeHoursRaw = timeCurrent.getHours();
+    var timeHoursDisplay = 0;
+    var timeHourPeriod = "AM";
+    // Determine if AM or PM
+    if (timeHoursRaw > 12)
+    {
+        timeHoursDisplay = timeHoursRaw - 12;
+        timeHourPeriod = "PM";
+    }
+
+    // Minute and seconds
     var timeMinutes = timeCurrent.getMinutes();
-    var timeSeconds = timeCurrent.getSeconds();
-    var timeString = timeHours + ":" + IntToTwoCharacterString(timeMinutes) + ":" + IntToTwoCharacterString(timeSeconds);
+    
+    // Display String
+    var timeString = timeHoursDisplay + ":" + IntToTwoCharacterString(timeMinutes) + " " + timeHourPeriod;
     $(".greeting-time").text(timeString);
     
     return;
@@ -43,7 +55,7 @@ function UpdateDateTime()
 
 /*
 Converts a integer to a two character string. 
-Used for minute and second.
+Used for displaying Minutes.
 
 Source: 
 */
