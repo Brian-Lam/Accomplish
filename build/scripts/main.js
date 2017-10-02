@@ -21,10 +21,27 @@ Load the time and populate the DOM.
 function LoadTime()
 {
     var timeCurrent = new Date();
+    // Hour
     var timeHours = timeCurrent.getHours();
+    var timeHourPeriod = "AM";
+
+    if (timeHours >= 12) {
+        // Show PM if it's after 12 noon
+        timeHourPeriod = "PM";
+    }
+    
+    timeHours = timeHours % 12;
+        
+    if (timeHours == 0) {
+        // If it's midnight, show hour as 12
+        timeHours = 12;
+    }
+
+    // Minute and seconds
     var timeMinutes = timeCurrent.getMinutes();
-    var timeSeconds = timeCurrent.getSeconds();
-    var timeString = timeHours + ":" + IntToTwoCharacterString(timeMinutes) + ":" + IntToTwoCharacterString(timeSeconds);
+    
+    // Display String
+    var timeString = timeHours + ":" + IntToTwoCharacterString(timeMinutes) + " " + timeHourPeriod;
     $(".greeting-time").text(timeString);
     
     return;
@@ -43,7 +60,7 @@ function UpdateDateTime()
 
 /*
 Converts a integer to a two character string. 
-Used for minute and second.
+Used for displaying Minutes.
 
 Source: https://stackoverflow.com/questions/8513032/less-than-10-add-0-to-number
 */
