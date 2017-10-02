@@ -9,13 +9,13 @@ function ShowBackground()
         "cairn-fog-mystical-background-158607.jpeg",
         "delicate-arch-night-stars-landscape.jpg",
         "pexels-photo-132037.jpeg",
-        "pexels-photo-139975.jpeg",
         "pexels-photo-206359.jpeg",
-        "pexels-photo-206660.jpeg",
         "pexels-photo-262669.jpeg",
         "pexels-photo-314860.jpeg",
-        "pexels-photo-325185.jpeg",
         "pexels-photo-360912.jpeg",
+        "StockSnap_RGOP31CS3I.jpg",
+        "StockSnap_UZ06B1MM4D.jpg",
+        "StockSnap_VAYIV58Q3X.jpg",
         "sunrise-phu-quoc-island-ocean.jpg"
     ];
 
