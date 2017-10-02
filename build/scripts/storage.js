@@ -1,3 +1,7 @@
+$(document).on("DOMContentLoaded", function () {
+	Initialize();
+});
+
 function SaveNewGoal() {
 	chrome.storage.sync.get('accomplishGoalsList', function(response){
 		var existingGoals = response.accomplishGoalsList;
@@ -5,7 +9,7 @@ function SaveNewGoal() {
 			existingGoals = [];
 		}
 		existingGoals.push({
-		'title': $('input[name=newgoal-title']).val(),
+		'title': $('input[name=newgoal-title]').val(),
 		'begin': $('input[name=newgoal-begin]').val(),
 		'end': $('input[name=newgoal-end]').val(),
 		'description': $('input[name=newgoal-description]').val()
@@ -14,9 +18,10 @@ function SaveNewGoal() {
 	});
 }
 
-
-// Initialize method that checks if previous goals have been defined and
-// loads them if they have been
+/*
+Initialize method that checks if previous goals have been defined and
+loads them if they have been
+*/
 function Initialize() {
 	chrome.storage.sync.get('accomplishGoalsList', function(response){
 		if (typeof response.accomplishGoalsList !== 'undefined') {
@@ -28,9 +33,5 @@ function Initialize() {
 			});
 		}
 	});
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-	Initialize();
 	document.getElementById("main-form").onsubmit = SaveNewGoal;
-});
+}
