@@ -37,5 +37,5 @@ function Initialize() {
 			});
 		}
 	});
-	document.getElementById("main-form").onsubmit = SaveNewGoal;
+	$("#main-form").submit(SaveNewGoal);
 }
