@@ -8,7 +8,7 @@ Load the date and populate the DOM.
 function LoadDate()
 {
     var dateCurrentDate = new Date();
-    var dateMonth = getMonthString(dateCurrentDate.getMonth());
+    var dateMonth = GetMonthString(dateCurrentDate.getMonth());
     var dateDay = dateCurrentDate.getDate();
     var dateString = dateMonth + " " + dateDay;
     $(".greeting-date").text(dateString);
@@ -67,7 +67,7 @@ function UpdateDateTime()
 Converts a integer to a two character string. 
 Used for displaying Minutes.
 
-Source: 
+Source: https://stackoverflow.com/questions/8513032/less-than-10-add-0-to-number
 */
 function IntToTwoCharacterString(_input)
 {
@@ -80,7 +80,7 @@ so Month 0 is January.
 
 Source: https://www.w3schools.com/jsref/jsref_getmonth.asp
 */
-function getMonthString(month)
+function GetMonthString(month)
 {
     if (month < 0 || month > 11)
     {
