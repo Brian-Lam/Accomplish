@@ -27,7 +27,7 @@ Action that occurs when a goal is clicked from the list.
 */
 function clickedGoal(e) {
 	// index of element to remove
-	var index = parseInt(e.currentTarget.getAttribute('index'));
+	var index = parseInt(e.currentTarget.getAttribute('data-index'));
 	e.currentTarget.parentElement.removeChild(e.currentTarget);
 	chrome.storage.sync.get('accomplishGoalsList', function(response){
 		var existingGoals = response.accomplishGoalsList;
@@ -36,9 +36,9 @@ function clickedGoal(e) {
 
 		// Decrease the index of elements after deleted element.
 		$('div.goal-item').each(function() {
-			var currentIndex = parseInt($(this).attr('index'));
+			var currentIndex = parseInt($(this).attr('data-index'));
 			if(currentIndex > index) {
-				$(this).attr('index', currentIndex - 1);
+				$(this).attr('data-index', currentIndex - 1);
 			}
 		});
 
@@ -68,7 +68,7 @@ function Initialize() {
 				}
 				newGoal += '</div>';
 				$('#goals-list').append(newGoal);
-				$('div.goal-item[index="' + index +'"]').click(clickedGoal);
+				$('div.goal-item[data-index="' + index +'"]').click(clickedGoal);
 				index++;
 			});
 		}
