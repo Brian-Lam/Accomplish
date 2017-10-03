@@ -35,8 +35,8 @@ function Initialize() {
 					'<div class=goal-item index=' + index + '>' +
 						'<div class=goal-property-title><u>' + goal.title + '</u></div>' +
 						'<div class="goal-property-time">' +
-							'<div class="goal-property-begin">' + goal.begin + '</div>' +
-							'<div class="goal-property-begin">' + goal.end + '</div>' +
+							'<span class="goal-property-begin">' + goal.begin + '</span> - ' +
+							'<span class="goal-property-end">' + goal.end + '</span>' +
 						'</div>';
 				if(typeof goal.description !== 'undefined') {
 					newGoal += '<div class="goal-property-description">' + goal.description + '</div>';
