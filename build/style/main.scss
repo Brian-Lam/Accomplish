@@ -140,3 +140,14 @@ html {
 .new-goal-close-button-wrapper {
     text-align: right;
 }
+
+.progress-bar-wrapper {
+    width: 500px;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.48);
+}
+
+.progress-bar-finished {
+    height: 100%;
+    background-color: rgba(126, 234, 126, 0.84);
+}
