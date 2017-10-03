@@ -12,6 +12,17 @@ html {
     background-size: cover;
 }
 
+.fade-cover {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0.42+100 */
+    background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.42) 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.42) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.42) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#6b000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */   height: 100%;
+    width: 100%;
+    z-index: 10000;
+    position: absolute;
+}
+
 .no-select {
     -webkit-user-select: none; /* Safari */        
     -moz-user-select: none; /* Firefox */
@@ -46,6 +57,8 @@ html {
     padding: 10px;
     border-radius: 10px;
     color: $offwhite;
+    max-width: 50%;
+    min-width: 260px;
 }
 
 .goals-list-header {
@@ -76,7 +89,7 @@ html {
     display: none;
     position: absolute;
     top: 30%;
-    background-color: rgba(0, 0, 0, 0.65);
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 1.5em 4em;
     color: $offwhite;
     border-radius: 23px;
@@ -95,9 +108,11 @@ html {
     border-bottom: 1px solid white;
     color: $offwhite;
     font-family: OpenSansCondensedLight;
-
+    transition: border-bottom .2s ease-in;
+    
     &:focus {
         outline: none;
+        border-bottom: 1px solid cyan;
     }
 }
 
@@ -114,6 +129,25 @@ html {
     }
 }
 
+.goal-item {
+    background-color: rgba(68, 68, 68, 0.29);
+    padding-top: 4px;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
 .new-goal-close-button-wrapper {
     text-align: right;
+}
+
+.progress-bar-wrapper {
+    width: 500px;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.48);
+}
+
+.progress-bar-finished {
+    height: 100%;
+    background-color: rgba(126, 234, 126, 0.84);
 }
