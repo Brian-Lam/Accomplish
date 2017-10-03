@@ -13,11 +13,36 @@ function SaveNewGoal() {
 			existingGoals = [];
 		}
 		existingGoals.push({
-		'title': $('input[name=newgoal-title]').val(),
-		'begin': $('input[name=newgoal-begin]').val(),
-		'end': $('input[name=newgoal-end]').val(),
-		'description': $('input[name=newgoal-description]').val()
+			'title': $('input[name=newgoal-title]').val(),
+			'begin': $('input[name=newgoal-begin]').val(),
+			'end': $('input[name=newgoal-end]').val(),
+			'description': $('input[name=newgoal-description]').val()
 		});
+		chrome.storage.sync.set({'accomplishGoalsList': existingGoals});
+	});
+}
+
+/*
+Action that occurs when a goal is clicked from the list.
+*/
+function clickedGoal(e) {
+	// index of element to remove
+	var index = parseInt(e.currentTarget.getAttribute('index'));
+	e.currentTarget.parentElement.removeChild(e.currentTarget);
+	chrome.storage.sync.get('accomplishGoalsList', function(response){
+		var existingGoals = response.accomplishGoalsList;
+		// Remove index from array
+		existingGoals.splice(index, 1);
+
+		// Decrease the index of elements after deleted element.
+		$('div.goal-item').each(function() {
+			var currentIndex = parseInt($(this).attr('index'));
+			if(currentIndex > index) {
+				$(this).attr('index', currentIndex - 1);
+			}
+		});
+
+		// Resync the new array
 		chrome.storage.sync.set({'accomplishGoalsList': existingGoals});
 	});
 }
@@ -43,6 +68,7 @@ function Initialize() {
 				}
 				newGoal += '</div>';
 				$('#goals-list').append(newGoal);
+				$('div.goal-item[index="' + index +'"]').click(clickedGoal);
 				index++;
 			});
 		}
