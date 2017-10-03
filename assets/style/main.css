@@ -47,4 +47,26 @@ html {
   border-radius: 10px;
   color: white; }
 
+.goals-list-header {
+  font-weight: 600;
+  font-size: 1.2em;
+  margin-bottom: 10px; }
+
+.goals-list-menu {
+  margin-top: 15px; }
+
+.goals-list-menu-button {
+  opacity: .6;
+  width: 1.3em;
+  cursor: pointer;
+  transition: opacity .2s ease-in; }
+  .goals-list-menu-button:hover {
+    opacity: .8; }
+
+.float-right {
+  float: right; }
+
+.new-goal-wrapper {
+  display: none; }
+
 /*# sourceMappingURL=main.css.map */
