@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    PageFadeIn();
     UpdateDateTime();
     AttachMenuButtonListeners();
 });
@@ -100,6 +101,9 @@ function GetMonthString(month)
     return months[month];
 }
 
+/* 
+Set up button actions
+*/
 function AttachMenuButtonListeners()
 {
     $("#new-goal-button").click(function(){
@@ -109,4 +113,12 @@ function AttachMenuButtonListeners()
     $("#new-goal-close-button").click(function(){
         $(".new-goal-wrapper").fadeOut(100);
     });
+}
+
+/*
+Fade in effect on page load 
+*/
+function PageFadeIn() 
+{
+    $(".fade-cover").fadeOut(600);
 }
