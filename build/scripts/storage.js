@@ -32,7 +32,7 @@ function Initialize() {
 			var index = 0;
 			response.accomplishGoalsList.forEach(function(goal) {
 				var newGoal = 
-					'<div class=goal-item index=' + index + '>' +
+					'<div class=goal-item data-index=' + index + '>' +
 						'<div class=goal-property-title><u>' + goal.title + '</u></div>' +
 						'<div class="goal-property-time">' +
 							'<span class="goal-property-begin">' + goal.begin + '</span> - ' +
