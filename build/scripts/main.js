@@ -120,5 +120,5 @@ Fade in effect on page load
 */
 function PageFadeIn() 
 {
-    $(".fade-cover").fadeOut(600);
+    $(".fade-cover").fadeOut(800);
 }
