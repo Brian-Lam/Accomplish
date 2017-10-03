@@ -29,11 +29,21 @@ loads them if they have been
 function Initialize() {
 	chrome.storage.sync.get('accomplishGoalsList', function(response){
 		if (typeof response.accomplishGoalsList !== 'undefined') {
+			var index = 0;
 			response.accomplishGoalsList.forEach(function(goal) {
-				$(document.body).append('<p> Title: ' + goal.title + '</p>');
-				$(document.body).append('<p> Begin: ' + goal.begin + '</p>');
-				$(document.body).append('<p> End: ' + goal.end + '</p>');
-				$(document.body).append('<p> Description: ' + goal.description + '</p>');
+				var newGoal = 
+				'<div class=goal-item index=' + index + '>' +
+					'<div class=goal-property-title><u>' + goal.title + '</u></div>' +
+					'<div class="goal-property-time">' +
+						'<div class="goal-property-begin">' + goal.begin + '</div>' +
+						'<div class="goal-property-begin">' + goal.end + '</div>' +
+					'</div>';
+				if(typeof goal.description !== 'undefined') {
+					newGoal += '<div class="goal-property-description">' + goal.description + '</div>';
+				}
+				newGoal += '</div>';
+				$('#goals-list').append(newGoal);
+				index++;
 			});
 		}
 	});
