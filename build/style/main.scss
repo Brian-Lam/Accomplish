@@ -95,9 +95,11 @@ html {
     border-bottom: 1px solid white;
     color: $offwhite;
     font-family: OpenSansCondensedLight;
-
+    transition: border-bottom .2s ease-in;
+    
     &:focus {
         outline: none;
+        border-bottom: 1px solid cyan;
     }
 }
 

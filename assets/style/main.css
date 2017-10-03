@@ -87,9 +87,11 @@ html {
   background: none;
   border-bottom: 1px solid white;
   color: rgba(255, 255, 255, 0.84);
-  font-family: OpenSansCondensedLight; }
+  font-family: OpenSansCondensedLight;
+  transition: border-bottom .2s ease-in; }
   .new-goal-input:focus {
-    outline: none; }
+    outline: none;
+    border-bottom: 1px solid cyan; }
 
 .new-goal-submit {
   border: none;
