@@ -103,6 +103,10 @@ function GetMonthString(month)
 function AttachMenuButtonListeners()
 {
     $("#new-goal-button").click(function(){
-        $(".new-goal-wrapper").show();
+        $(".new-goal-wrapper").fadeIn(100);
+    });
+
+    $("#new-goal-close-button").click(function(){
+        $(".new-goal-wrapper").fadeOut(100);
     });
 }

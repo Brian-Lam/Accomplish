@@ -45,7 +45,7 @@ html {
   background-color: rgba(0, 0, 0, 0.59);
   padding: 10px;
   border-radius: 10px;
-  color: white; }
+  color: rgba(255, 255, 255, 0.84); }
 
 .goals-list-header {
   font-weight: 600;
@@ -67,6 +67,41 @@ html {
   float: right; }
 
 .new-goal-wrapper {
-  display: none; }
+  display: none;
+  position: absolute;
+  top: 30%;
+  background-color: rgba(0, 0, 0, 0.65);
+  padding: 1.5em 4em;
+  color: rgba(255, 255, 255, 0.84);
+  border-radius: 23px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  max-width: 250px; }
+
+.new-goal-input {
+  border: none;
+  width: 100%;
+  padding: 3px;
+  background: none;
+  border-bottom: 1px solid white;
+  color: rgba(255, 255, 255, 0.84);
+  font-family: OpenSansCondensedLight; }
+  .new-goal-input:focus {
+    outline: none; }
+
+.new-goal-submit {
+  border: none;
+  background: white;
+  padding: .3em;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 3px; }
+  .new-goal-submit:hover {
+    background: #e1f6f9; }
+
+.new-goal-close-button-wrapper {
+  text-align: right; }
 
 /*# sourceMappingURL=main.css.map */
