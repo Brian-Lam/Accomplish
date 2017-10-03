@@ -1,5 +1,6 @@
 $(document).ready(function() {
     UpdateDateTime();
+    AttachMenuButtonListeners();
 });
 
 /*
@@ -97,4 +98,11 @@ function GetMonthString(month)
     months[11] = "December";
 
     return months[month];
+}
+
+function AttachMenuButtonListeners()
+{
+    $("#new-goal-button").click(function(){
+        $(".new-goal-wrapper").show();
+    });
 }

@@ -10,12 +10,20 @@ html {
     background-size: cover;
 }
 
+.no-select {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
 .greeting-wrapper {
     color: rgba(255, 255, 255, 0.84);
     position: fixed;
     text-align: center;
     width: 100%;
     top: 35%;
+    cursor: default;
 }
 
 .greeting-time-wrapper {
@@ -26,4 +34,42 @@ html {
 
 .greeting-time {
     font-size: .8em;
+}
+
+.goals-list-wrapper {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.59);
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+}
+
+.goals-list-header {
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.goals-list-menu {
+    margin-top: 15px;
+}
+
+.goals-list-menu-button {
+    opacity: .6;
+    width: 1.3em;
+    cursor: pointer;
+    transition: opacity .2s ease-in;
+    &:hover {
+        opacity: .8;
+    }
+}
+
+.float-right {
+    float: right;
+}
+
+.new-goal-wrapper {
+    display: none;
 }
