@@ -1,6 +1,8 @@
 # Accomplish
 A Google Chrome extension to use your New Tab page to stay on top of your goals and deadlines. 
 
+![](http://brianlam.me/assets/images/blog/1507096002.PNG)
+
 ## Purpose
 _Accomplish_ is an extension for people who are driven by deadlines and goals. It's for people whose goals, and their progress towards them, are constantly on their minds. 
 
