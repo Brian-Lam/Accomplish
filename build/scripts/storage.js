@@ -58,14 +58,19 @@ function Initialize() {
 			response.accomplishGoalsList.forEach(function(goal) {
 				var newGoal = 
 					'<div class=goal-item data-index=' + index + '>' +
-						'<div class=goal-property-title><u>' + goal.title + '</u></div>' +
-						'<div class="goal-property-time">' +
-							'<span class="goal-property-begin">' + goal.begin + '</span> - ' +
-							'<span class="goal-property-end">' + goal.end + '</span>' +
-						'</div>';
-				if(typeof goal.description !== 'undefined') {
+						'<span class=goal-property-title>' + goal.title + '</span>' +
+						'<span class="goal-property-end float-right">' + DaysUntil(goal.end) + ' days</span>';
+				
+				if (typeof goal.begin !== 'undefined') {
+					newGoal += '<div class="progress-bar-wrapper"><div class="progress-bar-finished"style=\"width:' + CurrentProgressToGoal(goal.begin, goal.end) +'%\"></div></div>';
+				}
+
+				newGoal += '</div>';
+				
+				if (typeof goal.description !== 'undefined') {
 					newGoal += '<div class="goal-property-description">' + goal.description + '</div>';
 				}
+
 				newGoal += '</div>';
 				$('#goals-list').append(newGoal);
 				$('div.goal-item[data-index="' + index +'"]').click(clickedGoal);
@@ -74,4 +79,28 @@ function Initialize() {
 		}
 	});
 	$("#main-form").submit(SaveNewGoal);
+}
+
+function CurrentProgressToGoal(beginDateString, endDateString)
+{
+	var endDate = new Date(endDateString).getTime();
+	var beginDate = new Date(beginDateString).getTime();
+	var todayDate = new Date().getTime();
+
+	if (endDate < beginDate || endDate < todayDate)
+	{
+		return 0;
+	}
+
+	var progressDecimal = ((todayDate - beginDate) / (endDate - beginDate));
+	var progressPercentage = progressDecimal * 100;
+	return progressPercentage.toString();
+}
+
+function DaysUntil(dateString)
+{
+	var secondsInDay = 86400000;
+	var endDate = new Date(dateString);
+	var todayDate = new Date();
+	return Math.round(Math.abs((endDate.getTime() - todayDate.getTime())/(secondsInDay)));
 }
