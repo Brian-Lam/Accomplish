@@ -6,6 +6,7 @@ html, body {
     margin: 0;
     height: 100%;
     width: 100%;
+    font-family: Oxygen;
 }
 
 html {
@@ -28,6 +29,7 @@ html {
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
+    cursor: default;
 }
 
 .greeting-wrapper {
@@ -63,8 +65,12 @@ html {
 
 .goals-list-header {
     font-weight: 600;
-    font-size: 1.2em;
+    font-size: 1.05em;
     margin-bottom: 10px;
+}
+
+.goal-property-end {
+    padding-left: 3em;
 }
 
 .goals-list-menu {

@@ -4,10 +4,14 @@
 @font-face {
   font-family: OpenSansCondensedBold;
   src: url("/assets/fonts/OpenSansCondensed-Bold.ttf"); }
+@font-face {
+  font-family: Oxygen;
+  src: url("/assets/fonts/Oxygen-Regular.ttf"); }
 html, body {
   margin: 0;
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  font-family: Oxygen; }
 
 html {
   background-size: cover; }
@@ -35,7 +39,8 @@ html {
   -ms-user-select: none;
   /* IE10+/Edge */
   user-select: none;
-  /* Standard */ }
+  /* Standard */
+  cursor: default; }
 
 .greeting-wrapper {
   color: rgba(255, 255, 255, 0.84);
@@ -66,8 +71,11 @@ html {
 
 .goals-list-header {
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 1.05em;
   margin-bottom: 10px; }
+
+.goal-property-end {
+  padding-left: 3em; }
 
 .goals-list-menu {
   margin-top: 15px; }

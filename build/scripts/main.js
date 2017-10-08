@@ -50,7 +50,7 @@ function LoadTime()
 }
 
 /*
-Run LoadDate and LoadTime on an interval
+Run LoadDate and LoadTime on an interval, updating every second.
 */
 function UpdateDateTime()
 {
