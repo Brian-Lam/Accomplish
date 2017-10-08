@@ -2,11 +2,13 @@ $(document).on("DOMContentLoaded", function () {
 	Initialize();
 });
 
-
 /*
-Uses chrome storage sync to save new goal
+Save new goal to Chrome cloud sync storage.
 */
-function SaveNewGoal() {
+function SaveNewGoal(e) {
+	// Prevent browser from submitting GET request
+	e.preventdefault()
+	
 	chrome.storage.sync.get('accomplishGoalsList', function(response){
 		var existingGoals = response.accomplishGoalsList;
 		if (typeof response.accomplishGoalsList === 'undefined') {
@@ -48,8 +50,8 @@ function clickedGoal(e) {
 }
 
 /*
-Initialize method that checks if previous goals have been defined and
-loads them if they have been
+Loads previously saved goals from Google Chrome Cloud Sync storage, and
+puts them into the DOM. 
 */
 function Initialize() {
 	chrome.storage.sync.get('accomplishGoalsList', function(response){
@@ -61,12 +63,14 @@ function Initialize() {
 						'<span class=goal-property-title>' + goal.title + '</span>' +
 						'<span class="goal-property-end float-right">' + DaysUntil(goal.end) + ' days</span>';
 				
+				// If the goal has a begin date, show a progress bar
 				if (typeof goal.begin !== 'undefined') {
 					newGoal += '<div class="progress-bar-wrapper"><div class="progress-bar-finished"style=\"width:' + CurrentProgressToGoal(goal.begin, goal.end) +'%\"></div></div>';
 				}
 
 				newGoal += '</div>';
 				
+				// If the goal has a description, show it
 				if (typeof goal.description !== 'undefined') {
 					newGoal += '<div class="goal-property-description">' + goal.description + '</div>';
 				}
@@ -81,6 +85,9 @@ function Initialize() {
 	$("#main-form").submit(SaveNewGoal);
 }
 
+/* 
+Used to calculate the percentage towards a goal 
+*/
 function CurrentProgressToGoal(beginDateString, endDateString)
 {
 	var endDate = new Date(endDateString).getTime();
@@ -97,6 +104,9 @@ function CurrentProgressToGoal(beginDateString, endDateString)
 	return progressPercentage.toString();
 }
 
+/* 
+Used to calculate days until a given date (provided as a string)
+*/
 function DaysUntil(dateString)
 {
 	var secondsInDay = 86400000;

@@ -2,6 +2,10 @@ $(document).ready(function() {
     ShowBackground();
 });
 
+/* 
+Load a random background from a list of saved backgrounds. This list
+needs to be updated when a background is removed or added.
+*/
 function ShowBackground()
 {
     var backgrounds = 
@@ -26,6 +30,7 @@ function ShowBackground()
         "sunrise-phu-quoc-island-ocean.jpg"
     ];
 
+    // Set background URL on top-level HTML tag
     var backgroundPath = "/assets/backgrounds/";
     var backgroundFile = backgrounds[Math.floor(Math.random() * backgrounds.length)];
     var backgroundUrl = "url('" + backgroundPath + backgroundFile + "')"
