@@ -95,7 +95,7 @@ html {
   display: none;
   position: absolute;
   top: 30%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(35, 33, 33, 0.93);
   padding: 1.5em 4em;
   color: rgba(255, 255, 255, 0.84);
   border-radius: 23px;
@@ -103,7 +103,11 @@ html {
   margin-right: auto;
   left: 0;
   right: 0;
-  max-width: 250px; }
+  max-width: 250px;
+  font-size: 1.15em; }
+
+.goal-form-p {
+  margin-top: 1.5em; }
 
 .new-goal-input {
   border: none;
@@ -112,21 +116,30 @@ html {
   background: none;
   border-bottom: 1px solid white;
   color: rgba(255, 255, 255, 0.84);
-  font-family: OpenSansCondensedLight;
+  font-family: Calibri;
   transition: border-bottom .2s ease-in; }
   .new-goal-input:focus {
     outline: none;
     border-bottom: 1px solid cyan; }
 
-.new-goal-submit {
+.goal-submit {
   border: none;
   background: white;
-  padding: .3em;
+  padding: .7em .3em;
   width: 100%;
   cursor: pointer;
   border-radius: 3px; }
-  .new-goal-submit:hover {
+  .goal-submit:hover {
     background: #e1f6f9; }
+
+#edit-goal-submit {
+  display: none; }
+
+#remove-goal-submit {
+  margin-top: .5em;
+  background-color: rgba(239, 180, 180, 0.78); }
+  #remove-goal-submit:hover {
+    background-color: rgba(239, 180, 180, 0.9); }
 
 .goal-item {
   background-color: rgba(68, 68, 68, 0.29);
@@ -136,7 +149,8 @@ html {
   border-radius: 5px; }
 
 .new-goal-close-button-wrapper {
-  text-align: right; }
+  text-align: right;
+  margin-right: -2em; }
 
 .progress-bar-wrapper {
   width: 100%;
@@ -147,5 +161,19 @@ html {
 .progress-bar-finished {
   height: 100%;
   background-color: rgba(126, 234, 126, 0.84); }
+
+.goal-property-edit-button {
+  height: 1em;
+  width: 1em;
+  margin-left: .5em;
+  display: inline-block;
+  background-image: url("/assets/images/edit.png");
+  background-size: contain;
+  opacity: 0;
+  transition: opacity .1s ease-in;
+  cursor: pointer; }
+
+.goal-item:hover .goal-property-edit-button {
+  opacity: .8; }
 
 /*# sourceMappingURL=main.css.map */

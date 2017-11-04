@@ -107,12 +107,76 @@ Set up button actions
 function AttachMenuButtonListeners()
 {
     $("#new-goal-button").click(function(){
-        $(".new-goal-wrapper").fadeIn(100);
+        ShowNewGoalForm();
     });
 
     $("#new-goal-close-button").click(function(){
         $(".new-goal-wrapper").fadeOut(100);
     });
+
+    $(".goal-property-edit-button").click(function(){
+        $("[name=newgoal-title]").val("hey");
+    });
+
+    $(".goal-property-edit-button").click(function(){
+        // Retrieve current values
+        var goalItem = $(this).closest(".goal-item");
+        var goalTitle = $(goalItem).find("[name=goal-title]").val();
+        var goalBegin = $(goalItem).find("[name=goal-begin]").val();
+        var goalEnd = $(goalItem).find("[name=goal-end]").val();
+        var goalDescription = $(goalItem).find("[name=goal-description]").val();
+
+        // Populate edit form
+        $("[name=newgoal-title]").val(goalTitle);
+        $("[name=newgoal-end]").val(goalEnd);
+        $("[name=newgoal-begin]").val(goalBegin);
+        $("[name=newgoal-description]").val(goalDescription);
+        
+        ShowEditGoalForm();
+    });
+
+    // Click outside of goal form popup to closeit
+    $(document).mouseup(function(e) 
+    {
+        // Credit: https://stackoverflow.com/questions/1403615/use-jquery-to-hide-a-div-when-the-user-clicks-outside-of-it
+        var container = $(".new-goal-wrapper");
+        if (!container.is(e.target) && container.has(e.target).length === 0) 
+        {
+            $(".new-goal-wrapper").fadeOut(100);
+        }
+    });
+}
+
+/* 
+Fade in the new goal form, hide anything edit related
+*/
+function ShowNewGoalForm()
+{
+    $("#edit-goal-submit").hide();
+    $("#new-goal-submit").show();
+
+    $("#edit-goal-h2").hide();
+    $("#add-goal-h2").show();
+
+    $("#remove-goal-submit").hide();
+
+    $(".new-goal-wrapper").fadeIn(100);
+}
+
+/* 
+Fade in the edit goal form, hide anything add related
+*/
+function ShowEditGoalForm()
+{
+    $("#edit-goal-submit").show();
+    $("#new-goal-submit").hide();
+
+    $("#edit-goal-h2").show();
+    $("#add-goal-h2").hide();
+
+    $("#remove-goal-submit").show();
+
+    $(".new-goal-wrapper").fadeIn(100);
 }
 
 /*
