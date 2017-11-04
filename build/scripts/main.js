@@ -115,7 +115,6 @@ function AttachMenuButtonListeners()
     });
 
     $(".goal-property-edit-button").click(function(){
-        $("[name=newgoal-title]").val("hey");
     });
 
     $(".goal-property-edit-button").click(function(){
