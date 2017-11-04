@@ -1,8 +1,26 @@
 $(document).ready(function() {
+    CacheSelectors();
     PageFadeIn();
     UpdateDateTime();
     AttachMenuButtonListeners();
 });
+
+var $titleInput,
+    $endInput,
+    $beginInput,
+    $descriptionInput, 
+    $greetingDate,
+    $greetingTime;
+
+/* Cache jQuery selectors */
+function CacheSelectors() {
+    $titleInput = $("[name=newgoal-title]");
+    $endInput = $("[name=newgoal-end]");
+    $beginInput = $("[name=newgoal-begin]");
+    $descriptionInput = $("[name=newgoal-description]");
+    $greetingDate = $(".greeting-date");
+    $greetingTime = $(".greeting-time");
+}
 
 /*
 Load the date and populate the DOM.
@@ -13,7 +31,7 @@ function LoadDate()
     var dateMonth = GetMonthString(dateCurrentDate.getMonth());
     var dateDay = dateCurrentDate.getDate();
     var dateString = dateMonth + " " + dateDay;
-    $(".greeting-date").text(dateString);
+    $greetingDate.text(dateString);
     return;
 }
 
@@ -44,7 +62,7 @@ function LoadTime()
     
     // Display String
     var timeString = timeHours + ":" + IntToTwoCharacterString(timeMinutes) + " " + timeHourPeriod;
-    $(".greeting-time").text(timeString);
+    $greetingTime.text(timeString);
     
     return;
 }
@@ -126,10 +144,10 @@ function AttachMenuButtonListeners()
         var goalDescription = $(goalItem).find("[name=goal-description]").val();
 
         // Populate edit form
-        $("[name=newgoal-title]").val(goalTitle);
-        $("[name=newgoal-end]").val(goalEnd);
-        $("[name=newgoal-begin]").val(goalBegin);
-        $("[name=newgoal-description]").val(goalDescription);
+        $titleInput.val(goalTitle);
+        $endInput.val(goalEnd);
+        $beginInput.val(goalBegin);
+        $descriptionInput.val(goalDescription);
         
         ShowEditGoalForm();
     });
@@ -151,6 +169,12 @@ Fade in the new goal form, hide anything edit related
 */
 function ShowNewGoalForm()
 {
+    // Clear out existing form values
+    $titleInput.val("");
+    $endInput.val("");
+    $beginInput.val("");
+    $descriptionInput.val("");
+    
     $("#edit-goal-submit").hide();
     $("#new-goal-submit").show();
 
