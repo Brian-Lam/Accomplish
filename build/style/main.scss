@@ -158,3 +158,19 @@ html {
     height: 100%;
     background-color: rgba(126, 234, 126, 0.84);
 }
+
+.goal-property-edit {
+    height: 1em;
+    width: 1em;
+    margin-left: .5em;
+    display: inline-block;
+    background-image: url("/assets/images/edit.png");
+    background-size: contain;
+    opacity: 0;
+    transition: opacity .1s ease-in;
+    cursor: pointer;
+}
+
+.goal-item:hover .goal-property-edit {
+    opacity: .8;
+}

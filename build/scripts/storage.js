@@ -61,6 +61,7 @@ function Initialize() {
 				var newGoal = 
 					'<div class=goal-item data-index=' + index + '>' +
 						'<span class=goal-property-title>' + goal.title + '</span>' +
+						'<div class=goal-property-edit> </div>' +
 						'<span class="goal-property-end float-right">' + DaysUntil(goal.end) + ' days</span>';
 				
 				// If the goal has a begin date, show a progress bar
