@@ -95,7 +95,7 @@ html {
     display: none;
     position: absolute;
     top: 30%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(35, 33, 33, 0.93);
     padding: 1.5em 4em;
     color: $offwhite;
     border-radius: 23px;
@@ -104,6 +104,11 @@ html {
     left: 0;
     right: 0;
     max-width: 250px;
+    font-size: 1.15em;
+}
+
+.goal-form-p {
+    margin-top: 1.5em;
 }
 
 .new-goal-input {
@@ -113,7 +118,7 @@ html {
     background: none;
     border-bottom: 1px solid white;
     color: $offwhite;
-    font-family: OpenSansCondensedLight;
+    font-family: Calibri;
     transition: border-bottom .2s ease-in;
     
     &:focus {
@@ -122,16 +127,28 @@ html {
     }
 }
 
-.new-goal-submit {
+.goal-submit {
     border: none;
     background: white;
-    padding: .3em;
+    padding: .7em .3em;
     width: 100%;
     cursor: pointer;
     border-radius: 3px;
 
     &:hover {
         background: #e1f6f9;
+    }
+}
+
+#edit-goal-submit {
+    display: none;
+}
+
+#remove-goal-submit {
+    margin-top: .5em;
+    background-color: rgba(239, 180, 180, 0.78);
+    &:hover {
+        background-color: rgba(239, 180, 180, 0.9);
     }
 }
 
@@ -145,6 +162,7 @@ html {
 
 .new-goal-close-button-wrapper {
     text-align: right;
+    margin-right: -2em;
 }
 
 .progress-bar-wrapper {
@@ -159,7 +177,7 @@ html {
     background-color: rgba(126, 234, 126, 0.84);
 }
 
-.goal-property-edit {
+.goal-property-edit-button {
     height: 1em;
     width: 1em;
     margin-left: .5em;
@@ -171,6 +189,6 @@ html {
     cursor: pointer;
 }
 
-.goal-item:hover .goal-property-edit {
+.goal-item:hover .goal-property-edit-button {
     opacity: .8;
 }
