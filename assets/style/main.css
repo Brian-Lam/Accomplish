@@ -1,2 +1,185 @@
-@font-face{font-family:OpenSansCondensedLight;src:url("/assets/fonts/OpenSansCondensed-Light.ttf")}@font-face{font-family:OpenSansCondensedBold;src:url("/assets/fonts/OpenSansCondensed-Bold.ttf")}@font-face{font-family:Oxygen;src:url("/assets/fonts/Oxygen-Regular.ttf")}html,body{margin:0;height:100%;width:100%;font-family:Oxygen}html{background-size:cover}.fade-cover{background:-moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.42) 100%);background:-webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.42) 100%);background:radial-gradient(ellipse at center, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.42) 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#6b000000',GradientType=1 );height:100%;width:100%;z-index:10000;position:absolute}.no-select{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default}.greeting-wrapper{color:rgba(255,255,255,0.84);position:fixed;text-align:center;width:100%;top:35%;cursor:default}.greeting-time-wrapper{font-size:5em;font-family:OpenSansCondensedLight;text-align:center}.greeting-time{font-size:.8em}.goals-list-wrapper{position:absolute;bottom:10px;right:10px;background-color:rgba(0,0,0,0.59);padding:10px;border-radius:10px;color:rgba(255,255,255,0.84);max-width:50%;min-width:260px}.goals-list-header{font-weight:600;font-size:1.05em;margin-bottom:10px}.goal-property-end{padding-left:3em}.goals-list-menu{margin-top:15px}.goals-list-menu-button{opacity:.6;width:1.3em;cursor:pointer;transition:opacity .2s ease-in}.goals-list-menu-button:hover{opacity:.8}.float-right{float:right}.new-goal-wrapper{display:none;position:absolute;top:30%;background-color:rgba(35,33,33,0.93);padding:1.5em 4em;color:rgba(255,255,255,0.84);border-radius:23px;margin-left:auto;margin-right:auto;left:0;right:0;max-width:250px;font-size:1.15em}.goal-form-p{margin-top:1.5em}.new-goal-input{border:none;width:100%;padding:3px;background:none;border-bottom:1px solid white;color:rgba(255,255,255,0.84);font-family:Calibri;transition:border-bottom .2s ease-in}.new-goal-input:focus{outline:none;border-bottom:1px solid cyan}.goal-submit{border:none;padding:.7em .3em;width:100%;cursor:pointer;border-radius:3px;transition:background-color .2s ease-in}#new-goal-submit{background-color:#2cec82}#new-goal-submit:hover{background-color:#04c75c}#edit-goal-submit{display:none;background-color:#2cc9ec}#edit-goal-submit:hover{background-color:#05add2}#remove-goal-submit{margin-top:.5em;background-color:#ec7c7c}#remove-goal-submit:hover{background-color:#d05c5c}.goal-item{background-color:rgba(68,68,68,0.29);padding-top:4px;padding:5px;margin-bottom:5px;border-radius:5px}.new-goal-close-button-wrapper{text-align:right;margin-right:-2em}.progress-bar-wrapper{width:100%;height:3px;background-color:rgba(255,255,255,0.48);margin-top:3px}.progress-bar-finished{height:100%;background-color:rgba(126,234,126,0.84)}.goal-property-edit-button{height:1em;width:1em;margin-left:.5em;display:inline-block;background-image:url("/assets/images/edit.png");background-size:contain;opacity:0;transition:opacity .1s ease-in;cursor:pointer}.goal-item:hover .goal-property-edit-button{opacity:.8}
+@font-face {
+  font-family: OpenSansCondensedLight;
+  src: url("/assets/fonts/OpenSansCondensed-Light.ttf"); }
+@font-face {
+  font-family: OpenSansCondensedBold;
+  src: url("/assets/fonts/OpenSansCondensed-Bold.ttf"); }
+@font-face {
+  font-family: Oxygen;
+  src: url("/assets/fonts/Oxygen-Regular.ttf"); }
+html, body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-family: Oxygen; }
+
+html {
+  background-size: cover; }
+
+.fade-cover {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0.42+100 */
+  background: -moz-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.42) 100%);
+  /* FF3.6-15 */
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.42) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.42) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#6b000000',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
+  height: 100%;
+  width: 100%;
+  z-index: 10000;
+  position: absolute; }
+
+.no-select {
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+/Edge */
+  user-select: none;
+  /* Standard */
+  cursor: default; }
+
+.greeting-wrapper {
+  color: rgba(255, 255, 255, 0.84);
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  top: 35%;
+  cursor: default; }
+
+.greeting-time-wrapper {
+  font-size: 5em;
+  font-family: OpenSansCondensedLight;
+  text-align: center; }
+
+.greeting-time {
+  font-size: .8em; }
+
+.goals-list-wrapper {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.59);
+  padding: 10px;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.84);
+  max-width: 50%;
+  min-width: 260px; }
+
+.goals-list-header {
+  font-weight: 600;
+  font-size: 1.05em;
+  margin-bottom: 10px; }
+
+.goal-property-end {
+  padding-left: 3em; }
+
+.goals-list-menu {
+  margin-top: 15px; }
+
+.goals-list-menu-button {
+  opacity: .6;
+  width: 1.3em;
+  cursor: pointer;
+  transition: opacity .2s ease-in; }
+  .goals-list-menu-button:hover {
+    opacity: .8; }
+
+.float-right {
+  float: right; }
+
+.new-goal-wrapper {
+  display: none;
+  position: absolute;
+  top: 30%;
+  background-color: rgba(35, 33, 33, 0.93);
+  padding: 1.5em 4em;
+  color: rgba(255, 255, 255, 0.84);
+  border-radius: 23px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  max-width: 250px;
+  font-size: 1.15em; }
+
+.goal-form-p {
+  margin-top: 1.5em; }
+
+.new-goal-input {
+  border: none;
+  width: 100%;
+  padding: 3px;
+  background: none;
+  border-bottom: 1px solid white;
+  color: rgba(255, 255, 255, 0.84);
+  font-family: Calibri;
+  transition: border-bottom .2s ease-in; }
+  .new-goal-input:focus {
+    outline: none;
+    border-bottom: 1px solid cyan; }
+
+.goal-submit {
+  border: none;
+  padding: .7em .3em;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color .2s ease-in; }
+
+#new-goal-submit {
+  background-color: #2cec82; }
+  #new-goal-submit:hover {
+    background-color: #04c75c; }
+
+#edit-goal-submit {
+  display: none;
+  background-color: #2cc9ec; }
+  #edit-goal-submit:hover {
+    background-color: #05add2; }
+
+#remove-goal-submit {
+  margin-top: .5em;
+  background-color: #ec7c7c; }
+  #remove-goal-submit:hover {
+    background-color: #d05c5c; }
+
+.goal-item {
+  background-color: rgba(68, 68, 68, 0.29);
+  padding-top: 4px;
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px; }
+
+.new-goal-close-button-wrapper {
+  text-align: right;
+  margin-right: -2em; }
+
+.progress-bar-wrapper {
+  width: 100%;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.48);
+  margin-top: 3px; }
+
+.progress-bar-finished {
+  height: 100%;
+  background-color: rgba(126, 234, 126, 0.84); }
+
+.goal-property-edit-button {
+  height: 1em;
+  width: 1em;
+  margin-left: .5em;
+  display: inline-block;
+  background-image: url("/assets/images/edit.png");
+  background-size: contain;
+  opacity: 0;
+  transition: opacity .1s ease-in;
+  cursor: pointer; }
+
+.goal-item:hover .goal-property-edit-button {
+  opacity: .8; }
+
 /*# sourceMappingURL=main.css.map */

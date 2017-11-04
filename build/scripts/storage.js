@@ -19,6 +19,10 @@ function SaveNewGoal(e) {
 		});
 		chrome.storage.sync.set({'accomplishGoalsList': existingGoals});
 	});
+
+	// Close window and refresh
+	$(".new-goal-wrapper").fadeOut(100);
+	location.reload();
 }
 
 /*
@@ -70,7 +74,13 @@ function Initialize() {
 		}
 	});
 
-	$("#main-form").submit(SaveNewGoal);
+	$("#main-form").submit(function(e) {
+		e.preventDefault();
+	});
+
+	$("#new-goal-submit").click(function() {
+		SaveNewGoal();
+	});
 }
 
 /* 
