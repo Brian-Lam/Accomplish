@@ -26,6 +26,24 @@ function SaveNewGoal(e) {
 }
 
 /*
+Remove goal at selected index
+*/
+function RemoveGoal(index) {
+	chrome.storage.sync.get('accomplishGoalsList', function(response){
+		if (typeof response.accomplishGoalsList !== 'undefined') {
+			var goalsList = response.accomplishGoalsList;
+			goalsList.splice(index, 1);
+			chrome.storage.sync.set({'accomplishGoalsList': goalsList});
+		}
+	});
+
+	// Close window and refresh
+	$goalFormWrapper.fadeOut(100);
+	location.reload();
+}
+
+
+/*
 Loads previously saved goals from Google Chrome Cloud Sync storage, and
 puts them into the DOM. 
 */
@@ -35,7 +53,7 @@ function Initialize() {
 			var index = 0;
 			response.accomplishGoalsList.forEach(function(goal) {
 				var newGoal = 
-					'<div class=goal-item data-index=' + index + '>' +
+					'<div class=goal-item>' +
 						'<nobr>' +
 						'<span class=goal-property-title>' + goal.title + '</span>' +
 						'<div class=goal-property-edit-button> </div>' +
@@ -46,6 +64,7 @@ function Initialize() {
 				newGoal += "<input type=hidden name=goal-begin />";
 				newGoal += "<input type=hidden name=goal-end />";
 				newGoal += "<input type=hidden name=goal-description />";
+				newGoal += "<input type=hidden name=goal-index />";
 
 				// If the goal has a begin date, show a progress bar
 				if (typeof goal.begin !== 'undefined') {
@@ -68,6 +87,7 @@ function Initialize() {
 				$(newGoalDiv).find("[name=goal-begin]").val(goal.begin);
 				$(newGoalDiv).find("[name=goal-end]").val(goal.end);
 				$(newGoalDiv).find("[name=goal-description]").val(goal.description);
+				$(newGoalDiv).find("[name=goal-index]").val(index);
 
 				index++;
 			});
@@ -80,6 +100,11 @@ function Initialize() {
 
 	$("#new-goal-submit").click(function() {
 		SaveNewGoal();
+	});
+
+	$("#remove-goal-submit").click(function() {
+		var index = $indexInput.val();
+		RemoveGoal(index);
 	});
 }
 

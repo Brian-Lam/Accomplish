@@ -9,6 +9,7 @@ var $titleInput,
     $endInput,
     $beginInput,
     $descriptionInput, 
+    $indexInput, 
     $greetingDate,
     $greetingTime,
     $goalFormWrapper;
@@ -19,6 +20,7 @@ function CacheSelectors() {
     $endInput = $("[name=newgoal-end]");
     $beginInput = $("[name=newgoal-begin]");
     $descriptionInput = $("[name=newgoal-description]");
+    $indexInput = $("[name=newgoal-index]");
     $greetingDate = $(".greeting-date");
     $greetingTime = $(".greeting-time");
     $goalFormWrapper = $(".new-goal-wrapper");
@@ -144,12 +146,14 @@ function AttachMenuButtonListeners()
         var goalBegin = $(goalItem).find("[name=goal-begin]").val();
         var goalEnd = $(goalItem).find("[name=goal-end]").val();
         var goalDescription = $(goalItem).find("[name=goal-description]").val();
+        var goalIndex = $(goalItem).find("[name=goal-index]").val();
 
         // Populate edit form
         $titleInput.val(goalTitle);
         $endInput.val(goalEnd);
         $beginInput.val(goalBegin);
         $descriptionInput.val(goalDescription);
+        $indexInput.val(goalIndex);
         
         ShowEditGoalForm();
     });
