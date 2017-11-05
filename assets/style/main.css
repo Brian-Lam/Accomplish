@@ -124,22 +124,28 @@ html {
 
 .goal-submit {
   border: none;
-  background: white;
   padding: .7em .3em;
   width: 100%;
   cursor: pointer;
-  border-radius: 3px; }
-  .goal-submit:hover {
-    background: #e1f6f9; }
+  border-radius: 3px;
+  transition: background-color .2s ease-in; }
+
+#new-goal-submit {
+  background-color: #2cec82; }
+  #new-goal-submit:hover {
+    background-color: #04c75c; }
 
 #edit-goal-submit {
-  display: none; }
+  display: none;
+  background-color: #2cc9ec; }
+  #edit-goal-submit:hover {
+    background-color: #05add2; }
 
 #remove-goal-submit {
   margin-top: .5em;
-  background-color: rgba(239, 180, 180, 0.78); }
+  background-color: #ec7c7c; }
   #remove-goal-submit:hover {
-    background-color: rgba(239, 180, 180, 0.9); }
+    background-color: #d05c5c; }
 
 .goal-item {
   background-color: rgba(68, 68, 68, 0.29);

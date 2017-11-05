@@ -1,8 +1,30 @@
 $(document).ready(function() {
+    CacheSelectors();
     PageFadeIn();
     UpdateDateTime();
     AttachMenuButtonListeners();
 });
+
+var $titleInput,
+    $endInput,
+    $beginInput,
+    $descriptionInput, 
+    $indexInput, 
+    $greetingDate,
+    $greetingTime,
+    $goalFormWrapper;
+
+/* Cache jQuery selectors */
+function CacheSelectors() {
+    $titleInput = $("[name=newgoal-title]");
+    $endInput = $("[name=newgoal-end]");
+    $beginInput = $("[name=newgoal-begin]");
+    $descriptionInput = $("[name=newgoal-description]");
+    $indexInput = $("[name=newgoal-index]");
+    $greetingDate = $(".greeting-date");
+    $greetingTime = $(".greeting-time");
+    $goalFormWrapper = $(".new-goal-wrapper");
+}
 
 /*
 Load the date and populate the DOM.
@@ -13,7 +35,7 @@ function LoadDate()
     var dateMonth = GetMonthString(dateCurrentDate.getMonth());
     var dateDay = dateCurrentDate.getDate();
     var dateString = dateMonth + " " + dateDay;
-    $(".greeting-date").text(dateString);
+    $greetingDate.text(dateString);
     return;
 }
 
@@ -44,7 +66,7 @@ function LoadTime()
     
     // Display String
     var timeString = timeHours + ":" + IntToTwoCharacterString(timeMinutes) + " " + timeHourPeriod;
-    $(".greeting-time").text(timeString);
+    $greetingTime.text(timeString);
     
     return;
 }
@@ -111,11 +133,10 @@ function AttachMenuButtonListeners()
     });
 
     $("#new-goal-close-button").click(function(){
-        $(".new-goal-wrapper").fadeOut(100);
+        $goalFormWrapper.fadeOut(100);
     });
 
     $(".goal-property-edit-button").click(function(){
-        $("[name=newgoal-title]").val("hey");
     });
 
     $(".goal-property-edit-button").click(function(){
@@ -125,12 +146,14 @@ function AttachMenuButtonListeners()
         var goalBegin = $(goalItem).find("[name=goal-begin]").val();
         var goalEnd = $(goalItem).find("[name=goal-end]").val();
         var goalDescription = $(goalItem).find("[name=goal-description]").val();
+        var goalIndex = $(goalItem).find("[name=goal-index]").val();
 
         // Populate edit form
-        $("[name=newgoal-title]").val(goalTitle);
-        $("[name=newgoal-end]").val(goalEnd);
-        $("[name=newgoal-begin]").val(goalBegin);
-        $("[name=newgoal-description]").val(goalDescription);
+        $titleInput.val(goalTitle);
+        $endInput.val(goalEnd);
+        $beginInput.val(goalBegin);
+        $descriptionInput.val(goalDescription);
+        $indexInput.val(goalIndex);
         
         ShowEditGoalForm();
     });
@@ -139,10 +162,10 @@ function AttachMenuButtonListeners()
     $(document).mouseup(function(e) 
     {
         // Credit: https://stackoverflow.com/questions/1403615/use-jquery-to-hide-a-div-when-the-user-clicks-outside-of-it
-        var container = $(".new-goal-wrapper");
+        var container = $goalFormWrapper
         if (!container.is(e.target) && container.has(e.target).length === 0) 
         {
-            $(".new-goal-wrapper").fadeOut(100);
+            $goalFormWrapper.fadeOut(100);
         }
     });
 }
@@ -152,6 +175,12 @@ Fade in the new goal form, hide anything edit related
 */
 function ShowNewGoalForm()
 {
+    // Clear out existing form values
+    $titleInput.val("");
+    $endInput.val("");
+    $beginInput.val("");
+    $descriptionInput.val("");
+    
     $("#edit-goal-submit").hide();
     $("#new-goal-submit").show();
 
@@ -160,7 +189,7 @@ function ShowNewGoalForm()
 
     $("#remove-goal-submit").hide();
 
-    $(".new-goal-wrapper").fadeIn(100);
+    $goalFormWrapper.fadeIn(100);
 }
 
 /* 
@@ -176,7 +205,7 @@ function ShowEditGoalForm()
 
     $("#remove-goal-submit").show();
 
-    $(".new-goal-wrapper").fadeIn(100);
+    $goalFormWrapper.fadeIn(100);
 }
 
 /*
