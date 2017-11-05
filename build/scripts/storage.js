@@ -12,16 +12,16 @@ function SaveNewGoal(e) {
 			existingGoals = [];
 		}
 		existingGoals.push({
-			'title': $('input[name=newgoal-title]').val(),
-			'begin': $('input[name=newgoal-begin]').val(),
-			'end': $('input[name=newgoal-end]').val(),
-			'description': $('input[name=newgoal-description]').val()
+			'title': $titleInput.val(),
+			'begin': $beginInput.val(),
+			'end': $endInput.val(),
+			'description': $descriptionInput.val()
 		});
 		chrome.storage.sync.set({'accomplishGoalsList': existingGoals});
 	});
 
 	// Close window and refresh
-	$(".new-goal-wrapper").fadeOut(100);
+	$goalFormWrapper.fadeOut(100);
 	location.reload();
 }
 

@@ -10,7 +10,8 @@ var $titleInput,
     $beginInput,
     $descriptionInput, 
     $greetingDate,
-    $greetingTime;
+    $greetingTime,
+    $goalFormWrapper;
 
 /* Cache jQuery selectors */
 function CacheSelectors() {
@@ -20,6 +21,7 @@ function CacheSelectors() {
     $descriptionInput = $("[name=newgoal-description]");
     $greetingDate = $(".greeting-date");
     $greetingTime = $(".greeting-time");
+    $goalFormWrapper = $(".new-goal-wrapper");
 }
 
 /*
@@ -129,7 +131,7 @@ function AttachMenuButtonListeners()
     });
 
     $("#new-goal-close-button").click(function(){
-        $(".new-goal-wrapper").fadeOut(100);
+        $goalFormWrapper.fadeOut(100);
     });
 
     $(".goal-property-edit-button").click(function(){
@@ -156,10 +158,10 @@ function AttachMenuButtonListeners()
     $(document).mouseup(function(e) 
     {
         // Credit: https://stackoverflow.com/questions/1403615/use-jquery-to-hide-a-div-when-the-user-clicks-outside-of-it
-        var container = $(".new-goal-wrapper");
+        var container = $goalFormWrapper
         if (!container.is(e.target) && container.has(e.target).length === 0) 
         {
-            $(".new-goal-wrapper").fadeOut(100);
+            $goalFormWrapper.fadeOut(100);
         }
     });
 }
@@ -183,7 +185,7 @@ function ShowNewGoalForm()
 
     $("#remove-goal-submit").hide();
 
-    $(".new-goal-wrapper").fadeIn(100);
+    $goalFormWrapper.fadeIn(100);
 }
 
 /* 
@@ -199,7 +201,7 @@ function ShowEditGoalForm()
 
     $("#remove-goal-submit").show();
 
-    $(".new-goal-wrapper").fadeIn(100);
+    $goalFormWrapper.fadeIn(100);
 }
 
 /*
