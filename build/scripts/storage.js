@@ -26,6 +26,34 @@ function SaveNewGoal(e) {
 }
 
 /*
+Edit goal at selected index
+*/
+function EditGoal(index) {
+	chrome.storage.sync.get('accomplishGoalsList', function(response){
+		if (typeof response.accomplishGoalsList !== 'undefined') {
+			var goalsList = response.accomplishGoalsList;
+
+			if (index > goalsList.length)
+			{
+				return;
+			}
+
+			var goalUpdate = goalsList[index];
+			goalUpdate.title = $titleInput.val();
+			goalUpdate.begin = $beginInput.val();
+			goalUpdate.end = $endInput.val();
+			goalUpdate.description = $descriptionInput.val();
+
+			chrome.storage.sync.set({'accomplishGoalsList': goalsList});
+		}
+	});
+
+	// Close window and refresh
+	$goalFormWrapper.fadeOut(100);
+	location.reload();
+}
+
+/*
 Remove goal at selected index
 */
 function RemoveGoal(index) {
@@ -41,7 +69,6 @@ function RemoveGoal(index) {
 	$goalFormWrapper.fadeOut(100);
 	location.reload();
 }
-
 
 /*
 Loads previously saved goals from Google Chrome Cloud Sync storage, and
@@ -105,6 +132,11 @@ function Initialize() {
 	$("#remove-goal-submit").click(function() {
 		var index = $indexInput.val();
 		RemoveGoal(index);
+	});
+
+	$("#edit-goal-submit").click(function() {
+		var index = $indexInput.val();
+		EditGoal(index);
 	});
 }
 
