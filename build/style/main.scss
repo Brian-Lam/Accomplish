@@ -165,11 +165,11 @@ html {
 }
 
 .goal-item {
-    background-color: rgba(68, 68, 68, 0.29);
     padding-top: 4px;
     padding: 5px;
     margin-bottom: 5px;
     border-radius: 5px;
+    border-bottom: 1px solid #ffffff1f;
 }
 
 .new-goal-close-button-wrapper {
@@ -208,4 +208,15 @@ html {
 #goal-input-notes 
 {
     resize: none;
+}
+
+#error-message-p 
+{
+    display: none;
+    color: red;
+}
+
+.goal-property-description
+{
+    padding: 0px 5px;
 }

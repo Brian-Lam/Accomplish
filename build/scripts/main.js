@@ -189,6 +189,8 @@ function ShowNewGoalForm()
 
     $("#remove-goal-submit").hide();
 
+    HideErrorMessage();
+
     $goalFormWrapper.fadeIn(100);
 }
 
@@ -204,6 +206,8 @@ function ShowEditGoalForm()
     $("#add-goal-h2").hide();
 
     $("#remove-goal-submit").show();
+
+    HideErrorMessage();
 
     $goalFormWrapper.fadeIn(100);
 }
