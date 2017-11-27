@@ -6,11 +6,19 @@ $(document).on("DOMContentLoaded", function () {
 Save new goal to Chrome cloud sync storage.
 */
 function SaveNewGoal(e) {
+	// Check if all the required fields are set
+	if (!FCheckValidGoalsFields())
+	{
+		return;
+	}
+
 	chrome.storage.sync.get('accomplishGoalsList', function(response){
+		// Initialize goals list if it doesn't exist
 		var existingGoals = response.accomplishGoalsList;
 		if (typeof response.accomplishGoalsList === 'undefined') {
 			existingGoals = [];
 		}
+
 		existingGoals.push({
 			'title': $titleInput.val(),
 			'begin': $beginInput.val(),
@@ -29,6 +37,12 @@ function SaveNewGoal(e) {
 Edit goal at selected index
 */
 function EditGoal(index) {
+	// Check if all the required fields are set
+	if (!FCheckValidGoalsFields())
+	{
+		return;
+	}
+	
 	chrome.storage.sync.get('accomplishGoalsList', function(response){
 		if (typeof response.accomplishGoalsList !== 'undefined') {
 			var goalsList = response.accomplishGoalsList;
@@ -94,14 +108,14 @@ function Initialize() {
 				newGoal += "<input type=hidden name=goal-index />";
 
 				// If the goal has a begin date, show a progress bar
-				if (typeof goal.begin !== 'undefined') {
+				if (typeof goal.begin !== 'undefined' && goal.begin !== "") {
 					newGoal += '<div class="progress-bar-wrapper"><div class="progress-bar-finished"style=\"width:' + CurrentProgressToGoal(goal.begin, goal.end) +'%\"></div></div>';
 				}
 
 				newGoal += '</div>';
 				
 				// If the goal has a description, show it
-				if (typeof goal.description !== 'undefined') {
+				if (typeof goal.description !== 'undefined' && goal.description !== "") {
 					newGoal += '<div class="goal-property-description">' + goal.description + '</div>';
 				}				
 
@@ -141,6 +155,25 @@ function Initialize() {
 }
 
 /* 
+Set error message string and show the field
+*/
+function ShowErrorMessage(errorString)
+{
+	$("#error-message-p").text(errorString);
+	$("#error-message-p").show();
+}
+
+/* 
+Clear the error message field and hide it
+*/
+function HideErrorMessage()
+{
+	$("#error-message-p").text("");
+	$("#error-message-p").hide();
+}
+
+
+/* 
 Used to calculate the percentage towards a goal 
 */
 function CurrentProgressToGoal(beginDateString, endDateString)
@@ -168,4 +201,21 @@ function DaysUntil(dateString)
 	var endDate = new Date(dateString);
 	var todayDate = new Date();
 	return Math.round(Math.abs((endDate.getTime() - todayDate.getTime())/(secondsInDay)));
+}
+
+function FCheckValidGoalsFields()
+{
+	if (!$titleInput.val())
+	{
+		ShowErrorMessage("Your goal needs a title!");
+		return false;
+	}
+
+	if (!$endInput.val())
+	{
+		ShowErrorMessage("What's your goal's finish date?");
+		return false;
+	}
+
+	return true;
 }

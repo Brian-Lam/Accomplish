@@ -1,1 +1,221 @@
-function SaveNewGoal(i){chrome.storage.sync.get("accomplishGoalsList",function(i){var e=i.accomplishGoalsList;void 0===i.accomplishGoalsList&&(e=[]),e.push({title:$titleInput.val(),begin:$beginInput.val(),end:$endInput.val(),description:$descriptionInput.val()}),chrome.storage.sync.set({accomplishGoalsList:e})}),$goalFormWrapper.fadeOut(100),location.reload()}function EditGoal(i){chrome.storage.sync.get("accomplishGoalsList",function(e){if(void 0!==e.accomplishGoalsList){var a=e.accomplishGoalsList;if(i>a.length)return;var t=a[i];t.title=$titleInput.val(),t.begin=$beginInput.val(),t.end=$endInput.val(),t.description=$descriptionInput.val(),chrome.storage.sync.set({accomplishGoalsList:a})}}),$goalFormWrapper.fadeOut(100),location.reload()}function RemoveGoal(i){chrome.storage.sync.get("accomplishGoalsList",function(e){if(void 0!==e.accomplishGoalsList){var a=e.accomplishGoalsList;a.splice(i,1),chrome.storage.sync.set({accomplishGoalsList:a})}}),$goalFormWrapper.fadeOut(100),location.reload()}function Initialize(){chrome.storage.sync.get("accomplishGoalsList",function(i){if(void 0!==i.accomplishGoalsList){var e=0;i.accomplishGoalsList.forEach(function(i){var a="<div class=goal-item><nobr><span class=goal-property-title>"+i.title+'</span><div class=goal-property-edit-button> </div><span class="goal-property-end float-right">'+DaysUntil(i.end)+" days</span></nobr>";a+="<input type=hidden name=goal-title />",a+="<input type=hidden name=goal-begin />",a+="<input type=hidden name=goal-end />",a+="<input type=hidden name=goal-description />",a+="<input type=hidden name=goal-index />",void 0!==i.begin&&(a+='<div class="progress-bar-wrapper"><div class="progress-bar-finished"style="width:'+CurrentProgressToGoal(i.begin,i.end)+'%"></div></div>'),a+="</div>",void 0!==i.description&&(a+='<div class="goal-property-description">'+i.description+"</div>"),a+="</div>",$("#goals-list").append(a);var t=$(".goal-item").last();$(t).find("[name=goal-title]").val(i.title),$(t).find("[name=goal-begin]").val(i.begin),$(t).find("[name=goal-end]").val(i.end),$(t).find("[name=goal-description]").val(i.description),$(t).find("[name=goal-index]").val(e),e++})}}),$("#main-form").submit(function(i){i.preventDefault()}),$("#new-goal-submit").click(function(){SaveNewGoal()}),$("#remove-goal-submit").click(function(){RemoveGoal($indexInput.val())}),$("#edit-goal-submit").click(function(){EditGoal($indexInput.val())})}function CurrentProgressToGoal(i,e){var a=new Date(e).getTime(),t=new Date(i).getTime(),o=(new Date).getTime();return a<t||a<o?0:(100*((o-t)/(a-t))).toString()}function DaysUntil(i){var e=new Date(i),a=new Date;return Math.round(Math.abs((e.getTime()-a.getTime())/864e5))}$(document).on("DOMContentLoaded",function(){Initialize()});
+$(document).on("DOMContentLoaded", function () {
+	Initialize();
+});
+
+/*
+Save new goal to Chrome cloud sync storage.
+*/
+function SaveNewGoal(e) {
+	// Check if all the required fields are set
+	if (!FCheckValidGoalsFields())
+	{
+		return;
+	}
+
+	chrome.storage.sync.get('accomplishGoalsList', function(response){
+		// Initialize goals list if it doesn't exist
+		var existingGoals = response.accomplishGoalsList;
+		if (typeof response.accomplishGoalsList === 'undefined') {
+			existingGoals = [];
+		}
+
+		existingGoals.push({
+			'title': $titleInput.val(),
+			'begin': $beginInput.val(),
+			'end': $endInput.val(),
+			'description': $descriptionInput.val()
+		});
+		chrome.storage.sync.set({'accomplishGoalsList': existingGoals});
+	});
+
+	// Close window and refresh
+	$goalFormWrapper.fadeOut(100);
+	location.reload();
+}
+
+/*
+Edit goal at selected index
+*/
+function EditGoal(index) {
+	// Check if all the required fields are set
+	if (!FCheckValidGoalsFields())
+	{
+		return;
+	}
+	
+	chrome.storage.sync.get('accomplishGoalsList', function(response){
+		if (typeof response.accomplishGoalsList !== 'undefined') {
+			var goalsList = response.accomplishGoalsList;
+
+			if (index > goalsList.length)
+			{
+				return;
+			}
+
+			var goalUpdate = goalsList[index];
+			goalUpdate.title = $titleInput.val();
+			goalUpdate.begin = $beginInput.val();
+			goalUpdate.end = $endInput.val();
+			goalUpdate.description = $descriptionInput.val();
+
+			chrome.storage.sync.set({'accomplishGoalsList': goalsList});
+		}
+	});
+
+	// Close window and refresh
+	$goalFormWrapper.fadeOut(100);
+	location.reload();
+}
+
+/*
+Remove goal at selected index
+*/
+function RemoveGoal(index) {
+	chrome.storage.sync.get('accomplishGoalsList', function(response){
+		if (typeof response.accomplishGoalsList !== 'undefined') {
+			var goalsList = response.accomplishGoalsList;
+			goalsList.splice(index, 1);
+			chrome.storage.sync.set({'accomplishGoalsList': goalsList});
+		}
+	});
+
+	// Close window and refresh
+	$goalFormWrapper.fadeOut(100);
+	location.reload();
+}
+
+/*
+Loads previously saved goals from Google Chrome Cloud Sync storage, and
+puts them into the DOM. 
+*/
+function Initialize() {
+	chrome.storage.sync.get('accomplishGoalsList', function(response){
+		if (typeof response.accomplishGoalsList !== 'undefined') {
+			var index = 0;
+			response.accomplishGoalsList.forEach(function(goal) {
+				var newGoal = 
+					'<div class=goal-item>' +
+						'<nobr>' +
+						'<span class=goal-property-title>' + goal.title + '</span>' +
+						'<div class=goal-property-edit-button> </div>' +
+						'<span class="goal-property-end float-right">' + DaysUntil(goal.end) + ' days</span>' +
+						'</nobr>';
+				
+				newGoal += "<input type=hidden name=goal-title />";
+				newGoal += "<input type=hidden name=goal-begin />";
+				newGoal += "<input type=hidden name=goal-end />";
+				newGoal += "<input type=hidden name=goal-description />";
+				newGoal += "<input type=hidden name=goal-index />";
+
+				// If the goal has a begin date, show a progress bar
+				if (typeof goal.begin !== 'undefined' && goal.begin !== "") {
+					newGoal += '<div class="progress-bar-wrapper"><div class="progress-bar-finished"style=\"width:' + CurrentProgressToGoal(goal.begin, goal.end) +'%\"></div></div>';
+				}
+
+				newGoal += '</div>';
+				
+				// If the goal has a description, show it
+				if (typeof goal.description !== 'undefined' && goal.description !== "") {
+					newGoal += '<div class="goal-property-description">' + goal.description + '</div>';
+				}				
+
+				newGoal += '</div>';
+				$('#goals-list').append(newGoal);
+
+				// Populate hidden fields for fast retrieval later
+				var newGoalDiv = $(".goal-item").last();
+				$(newGoalDiv).find("[name=goal-title]").val(goal.title);
+				$(newGoalDiv).find("[name=goal-begin]").val(goal.begin);
+				$(newGoalDiv).find("[name=goal-end]").val(goal.end);
+				$(newGoalDiv).find("[name=goal-description]").val(goal.description);
+				$(newGoalDiv).find("[name=goal-index]").val(index);
+
+				index++;
+			});
+		}
+	});
+
+	$("#main-form").submit(function(e) {
+		e.preventDefault();
+	});
+
+	$("#new-goal-submit").click(function() {
+		SaveNewGoal();
+	});
+
+	$("#remove-goal-submit").click(function() {
+		var index = $indexInput.val();
+		RemoveGoal(index);
+	});
+
+	$("#edit-goal-submit").click(function() {
+		var index = $indexInput.val();
+		EditGoal(index);
+	});
+}
+
+/* 
+Set error message string and show the field
+*/
+function ShowErrorMessage(errorString)
+{
+	$("#error-message-p").text(errorString);
+	$("#error-message-p").show();
+}
+
+/* 
+Clear the error message field and hide it
+*/
+function HideErrorMessage()
+{
+	$("#error-message-p").text("");
+	$("#error-message-p").hide();
+}
+
+
+/* 
+Used to calculate the percentage towards a goal 
+*/
+function CurrentProgressToGoal(beginDateString, endDateString)
+{
+	var endDate = new Date(endDateString).getTime();
+	var beginDate = new Date(beginDateString).getTime();
+	var todayDate = new Date().getTime();
+
+	if (endDate < beginDate || endDate < todayDate)
+	{
+		return 0;
+	}
+
+	var progressDecimal = ((todayDate - beginDate) / (endDate - beginDate));
+	var progressPercentage = progressDecimal * 100;
+	return progressPercentage.toString();
+}
+
+/* 
+Used to calculate days until a given date (provided as a string)
+*/
+function DaysUntil(dateString)
+{
+	var secondsInDay = 86400000;
+	var endDate = new Date(dateString);
+	var todayDate = new Date();
+	return Math.round(Math.abs((endDate.getTime() - todayDate.getTime())/(secondsInDay)));
+}
+
+function FCheckValidGoalsFields()
+{
+	if (!$titleInput.val())
+	{
+		ShowErrorMessage("Your goal needs a title!");
+		return false;
+	}
+
+	if (!$endInput.val())
+	{
+		ShowErrorMessage("What's your goal's finish date?");
+		return false;
+	}
+
+	return true;
+}
